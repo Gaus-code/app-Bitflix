@@ -1,7 +1,10 @@
 <?php
 /**
  * @var array $genres
+ * @var $myURL
  */
+
+
 ?>
 <aside class="aside">
 	<div class="aside__container">
@@ -17,7 +20,7 @@
 				</li>
 				<?php foreach ($genres as $genre): ?>
 					<li class="aside__item">
-						<a href="<?= 'genres.php?genre='. $genre ?>" class="aside__link"><?=$genre?></a>
+						<a href="<?= '/genres.php?genre=' . $genre ?>" class="aside__link"><?=$genre?></a>
 					</li>
 				<?php endforeach; ?>
 				<li class="aside__item">

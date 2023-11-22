@@ -31,7 +31,7 @@ global $movies;
 						</div>
 						<div class="info__main_container">
 							<div class="rating">
-								<?php makeRatingLine($movie); ?>
+								<?php renderRatingLine($movie); ?>
 								<div class="rating__result"><?= $movie['rating'] ?></div>
 							</div>
 							<div class="info__main_title">

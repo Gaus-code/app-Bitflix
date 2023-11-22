@@ -1,17 +1,35 @@
 <?php
 require_once __DIR__ . '/../boot.php';
 require_once __DIR__ . '/../data/movies-data.php';
+/**
+ * @var array $movies
+ */
 
-global $movies;
+$ID = $_GET['ID'] ?? '';
+if(($_GET['ID'] ?? '') ?? (empty($_GET['ID'])))
+{
+	$ID = isset($_GET['ID']) ? (string)$_GET['ID'] : $_GET['ID'];
+}
 
-$ID = $_GET['ID'];
+if (!$_REQUEST || $ID === null)
+{
+	echo renderTemplate('layout', [
+		'title' => 'NOT FOUND',
+		'page' => renderTemplate('/pages/404', []),
+	]);
+	exit;
+}
+if (!is_numeric($ID))
+{
+	echo nl2br('page not found' . PHP_EOL .  'a ne nado bylo moj url peredelyvat\', he-he =)');
+	exit;
+}
 
 foreach ($movies as $movie)
 {
 	$filteredMovies = array_filter($movies, function ($ID) use ($movie)
 	{
-		return $movie['id'] == $ID;
-
+		return $movie['id'] === $ID;
 	});
 }
 

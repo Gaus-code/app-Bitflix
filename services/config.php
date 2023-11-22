@@ -1,9 +1,10 @@
 <?php
-
+/**
+ * @var array $config
+ */
 
 function getConfigValue(string $name, $defaultValue)
 {
-	/**@var  array $config*/
 	static $config = null;
 	if ($config === null)
 	{

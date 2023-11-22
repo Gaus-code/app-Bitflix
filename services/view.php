@@ -5,7 +5,6 @@ function renderTemplate(string $path, array $variables = []): string
 	{
 		return 'Invalid template path';
 	}
-
 	$absolutePath = ROOT . "/views/$path.php";
 
 	if (!file_exists($absolutePath))
