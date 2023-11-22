@@ -1,5 +1,7 @@
 <?php
-global $movies;
+/**
+ * @var array $movies
+ */
 ?>
 
 <main class="info">

@@ -38,5 +38,8 @@ echo renderTemplate('layout',[
 	'title' => getConfigValue('TITLE', 'Bitflix :: About'),
 	'page' => renderTemplate('pages/detail', [
 		'movie' => $movie,
+		'movies' => $movies
 	]),
+	'movie' => $movie,
+
 ]);

@@ -1,11 +1,9 @@
 <?php
 /**
- * @var array $genres
- *
+ * @var array $genres;
  */
-
 require_once __DIR__ . '/../views/components/movie-card.php';
-function filterMoviesByGenre($movie)
+function filterMoviesByGenre()
 {
 	global $movies;
 	foreach ($movies as $movie)

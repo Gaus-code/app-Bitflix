@@ -5,8 +5,16 @@ require_once __DIR__ . '/../boot.php';
  * @var array $genres ;
  * @var array $movies ;
  * @var array $genre ;
- * @var array $movie ;
  */
+function getMovie(array $movies): array
+{
+	foreach ($movies as $movie)
+	{
+		return $movie;
+	}
+	/** @var array $movie */
+	return $movie;
+}
 
 $selectedGenre = $_GET['genre'] ?? '';
 if (!empty($_GET['genre']))
@@ -15,8 +23,8 @@ if (!empty($_GET['genre']))
 		'title' => getConfigValue('TITLE', 'Bitflix :: Genres'),
 		'page' => renderTemplate('/components/genres', [
 			'genre' => $selectedGenre,
+			'movie' => getMovie($movies),
 		]),
-		'movie' => $movie,
 	]);
 }
 else
