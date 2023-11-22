@@ -20,7 +20,7 @@
 				</li>
 				<?php foreach ($genres as $genre): ?>
 					<li class="aside__item">
-						<a href="<?= '/genres.php?genre=' . $genre ?>" class="aside__link"><?=$genre?></a>
+						<a href="<?= '/index.php?genre=' . $genre ?>" class="aside__link"><?=$genre?></a>
 					</li>
 				<?php endforeach; ?>
 				<li class="aside__item">

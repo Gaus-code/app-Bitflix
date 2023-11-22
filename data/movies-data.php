@@ -410,14 +410,3 @@ $movies = [
 		'rating' => 8.0,
 	],
 ];
-
-
-// genre filtering
-$code = 'family';
-foreach ($movies as $movie)
-{
-	if (isset($genres[$code]) && in_array($genres[$code], $movie['genres'], true))
-	{
-//		var_dump('YES!', $movie['title']);
-	}
-}
