@@ -3,7 +3,7 @@
  * @var array $movies
  * @var array $genres
  */
-require_once "./../data/movies-data.php";
+require_once "../data/movies-data.php";
 ?>
 <main class="main">
 
@@ -57,4 +57,4 @@ require_once "./../data/movies-data.php";
 		</div>
 	</div>
 </main>
-<script src="../../assets/scripts/index404.js"></script>
+<script src="/assets/scripts/index404.js"></script>

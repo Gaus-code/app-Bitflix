@@ -10,7 +10,7 @@
 	<div class="aside__container">
 		<div class="aside__logo">
 			<a href="/" class="aside__logo_link">
-				<img src="../../../assets/images/logo.svg" alt="bitflix logo" class="logo">
+				<img src="/assets/images/logo.svg" alt="bitflix logo" class="logo">
 			</a>
 		</div>
 		<nav class="aside__nav">
@@ -24,7 +24,7 @@
 					</li>
 				<?php endforeach; ?>
 				<li class="aside__item">
-					<a href="../../../favourite.php" class="aside__link">Избранное</a>
+					<a href="/favourite.php" class="aside__link">Избранное</a>
 				</li>
 			</ul>
 		</nav>

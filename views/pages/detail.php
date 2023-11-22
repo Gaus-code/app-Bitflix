@@ -17,18 +17,18 @@ global $movies;
 						</div>
 						<div class="heartWrapper">
 							<button class="heartBtn">
-								<img class="heartBtn__image" id="emptyHeart" src="./assets/images/emptyHeart.svg" alt="don't leave my heart broken">
+								<img class="heartBtn__image" id="emptyHeart" src="/assets/images/emptyHeart.svg" alt="don't leave my heart broken">
 							</button>
 						</div>
 					</div>
 					<div class="line"></div>
 					<div class="info__main">
 						<div class="info__image">
-							<img src="./assets/images/<?= $movie['id'] ?>.jpg" alt="inside out preview">
+							<img src="/assets/images/<?= $movie['id'] ?>.jpg" alt="inside out preview">
 						</div>
 						<div class="info__main_container">
 							<div class="rating">
-								<?php renderRatingLine($movie); ?>
+								<?php displayRatingLine($movie); ?>
 								<div class="rating__result"><?= $movie['rating'] ?></div>
 							</div>
 							<div class="info__main_title">
@@ -59,4 +59,4 @@ global $movies;
 		</div>
 	</div>
 </main>
-<script src="../../assets/scripts/index.js"></script>
+<script src="/assets/scripts/index.js"></script>

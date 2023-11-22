@@ -4,21 +4,21 @@
     font-family: 'Open Sans';
     font-style: normal;
     font-weight: 400;
-    src: url("../fonts/open-sans-v36-cyrillic-ext_latin-regular.woff2") format("woff2"); }
+    src: url("./fonts/open-sans-v36-cyrillic-ext_latin-regular.woff2") format("woff2"); }
 /* open-sans-600 - cyrillic-ext_latin */
 @font-face {
     font-display: swap;
     font-family: 'Open Sans';
     font-style: normal;
     font-weight: 600;
-    src: url("../fonts/open-sans-v36-cyrillic-ext_latin-600.woff2") format("woff2"); }
+    src: url("./fonts/open-sans-v36-cyrillic-ext_latin-600.woff2") format("woff2"); }
 /* open-sans-700 - cyrillic-ext_latin */
 @font-face {
     font-display: swap;
     font-family: 'Open Sans';
     font-style: normal;
     font-weight: 700;
-    src: url("../fonts/open-sans-v36-cyrillic-ext_latin-700.woff2") format("woff2"); }
+    src: url("./fonts/open-sans-v36-cyrillic-ext_latin-700.woff2") format("woff2"); }
 /*reset styles*/
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,

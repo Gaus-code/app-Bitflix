@@ -7,7 +7,7 @@ function convertMinutesToHours( ?int $minutes): string
 	return $hours . ':' . str_pad($remainingMinutes, 2, '0', STR_PAD_LEFT);
 }
 
-function renderRatingLine(array $movie): array
+function displayRatingLine(array $movie): array
 {
 	echo '<div class="rating__line">';
 	for ($i = 1; $i <= 10; $i++) {
