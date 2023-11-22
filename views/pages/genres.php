@@ -1,8 +1,4 @@
 <?php
-/**
- * @var array $movies
- * @var array $genres
- */
 global $movies;
 ?>
 
