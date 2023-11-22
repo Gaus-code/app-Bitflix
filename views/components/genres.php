@@ -1,13 +1,11 @@
 <?php
-global $movies;
+global $movie;
 ?>
 
 <main class="main">
 	<div class="main__container">
 		<div class="cards__container">
-			<?php foreach ($movies as $movie):?>
-				<?= getFilteredMovies($movie)?>
-			<?php endforeach; ?>
+			<?= generateFilteredMovies($movie) ?>
 		</div>
 	</div>
 </main>

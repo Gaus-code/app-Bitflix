@@ -4,8 +4,8 @@ require_once __DIR__ . '/../boot.php';
 /**
  * @var array $genres;
  * @var array $movies
+ * @var array $genre;
  */
-global $genre;
 
 //проверяем наличие ключа
 $genre = $_GET['genre'] ?? '';

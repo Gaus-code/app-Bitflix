@@ -1,18 +1,22 @@
 <?php
 /**
- * @var array $movies
+ * @var array $movie
  * @return string
  */
 require_once __DIR__ . '/../views/components/movie-card.php';
-function getFilteredMovies(array $movie)
+function generateFilteredMovies($movie)
 {
-	$genres = $movie['genres'];
-	$values = array_chunk($genres, 1);
-	foreach ($values as $genre)
+	global $movies;
+	foreach ($movies as $movie)
 	{
-		if (implode($genre) === $_GET['genre'])
+		$genres = $movie['genres'];
+		$values = array_chunk($genres, 1);
+		foreach ($values as $genre)
 		{
-			echo generateMovieCard($movie);
+			if (implode($genre) === $_GET['genre'])
+			{
+				echo generateMovieCard($movie);
+			}
 		}
 	}
 }
