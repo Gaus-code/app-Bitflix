@@ -3,8 +3,6 @@
  * @var array $genres
  * @var $myURL
  */
-
-
 ?>
 <aside class="aside">
 	<div class="aside__container">

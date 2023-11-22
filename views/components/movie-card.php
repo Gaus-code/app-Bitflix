@@ -1,5 +1,5 @@
 <?php
-function generateMovieCard(array $movie): string
+function generateMovieCard($movie)
 {
 	$card = '<div class="card">';
 	$card .= '<img class="card__image" src="./assets/images/' . $movie['id'] . '.jpg' . '" alt="' . $movie['title'] . '">';
