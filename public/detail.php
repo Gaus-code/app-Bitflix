@@ -1,11 +1,39 @@
 <?php
 require_once __DIR__ . '/../boot.php';
-require_once __DIR__ . '/../data/movies-data.php';
 require_once __DIR__ . '/../views/components/rating-line.php';
-/**
- * @var array $movies
- */
 
+/**
+ * @var array $genres ;
+ * @var array $movies ;
+ * @var array $movie ;
+ */
+function getMovieInfo() :array
+{
+	$ID = $_GET['ID'] ?? '';
+	$connection = getDbConnection();
+	$result = mysqli_query($connection, "SELECT * FROM movie WHERE id = '$ID';");
+	if (!$result)
+	{
+		throw new Exception(mysqli_error($connection));
+	}
+	$dbMovies = [];
+	while ($row = mysqli_fetch_assoc($result))
+	{
+		$dbMovies[] = [
+			'id' => $row['ID'],
+			'title' => $row['TITLE'],
+			'originalTitle' => $row['ORIGINAL_TITLE'],
+			'description' => $row['DESCRIPTION'],
+			'duration' => $row['DURATION'],
+			'ageRestriction' => $row['AGE_RESTRICTION'],
+			'releaseDate' => $row['RELEASE_DATE'],
+			'rating' => $row['RATING'],
+			'directorID' => $row['DIRECTOR_ID'],
+		];
+	}
+	return $dbMovies;
+}
+$movies = getMovieInfo();
 $ID = $_GET['ID'] ?? '';
 if(($_GET['ID'] ?? ''))
 {
@@ -38,8 +66,7 @@ echo renderTemplate('layout',[
 	'title' => getConfigValue('TITLE', 'Bitflix :: About'),
 	'page' => renderTemplate('pages/detail', [
 		'movie' => $movie,
-		'movies' => $movies
+		'movies' => $movies,
 	]),
 	'movie' => $movie,
-
 ]);

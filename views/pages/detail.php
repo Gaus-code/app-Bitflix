@@ -1,20 +1,21 @@
 <?php
 /**
- * @var array $movies
+ * @var $movies
  */
+
 ?>
 
 <main class="info">
 	<div class="info__container">
 		<div class="info__content">
 			<?php foreach ($movies as $movie):  ?>
-				<?php $movieID = $movie['id']; if ($movieID === (int)$_GET['ID']):?>
+				<?php var_dump($movie); if ($movie['id']=== (int)$_GET['ID']):?>
 					<div class="info__header">
 						<div class="info__title">
-							<h1><?= $movie['title'] . ' (' . $movie['release-date'] . ')'?></h1>
+							<h1><?php var_dump($movie['title'] . ' (' . $movie['releaseDate'] . ')') ?></h1>
 							<div class="info__engTitle">
-								<p><?= $movie['original-title'] ?></p>
-								<div class="minAge"><?= $movie['age-restriction'] ?>+</div>
+								<p><?= $movie['originalTitle'] ?></p>
+								<div class="minAge"><?= $movie['ageRestriction'] ?>+</div>
 							</div>
 						</div>
 						<div class="heartWrapper">
@@ -38,15 +39,15 @@
 								<ul class="info__list">
 									<li class="info__item">
 										<p class="info__key">Год производства:</p>
-										<p class="info__value"><?= $movie['release-date'] ?></p>
+										<p class="info__value"><?= $movie['releaseDate'] ?></p>
 									</li>
 									<li class="info__item">
 										<p class="info__key">Режиссер:</p>
-										<p class="info__value"><?= $movie['director'] ?></p>
+										<p class="info__value"></p>
 									</li>
 									<li class="info__item">
 										<p class="info__key">В главных ролях:</p>
-										<p class="info__value"> <?php $cast = $movie['cast']; echo implode(', ',$cast); ?></p>
+										<p class="info__value"> </p>
 									</li>
 								</ul>
 							</div>

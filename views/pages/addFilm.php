@@ -4,7 +4,6 @@
  * @var array $movies
  * @var array $genres
  */
-require_once "../data/movies-data.php";
 ?>
 <main class="main">
 	<div class="container404">

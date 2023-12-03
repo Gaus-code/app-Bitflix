@@ -1,20 +1,48 @@
 <?php
-require_once __DIR__ . '/../data/movies-data.php';
+
 require_once __DIR__ . '/../boot.php';
 /**
- * @var array $genres ;
- * @var array $movies ;
+ * @throws Exception
+ * @var array $dbMovies ;
  * @var array $genre ;
+ * @var array $genres ;
  */
-function getMovie(array $movies): array
+function getMovies() :array
 {
+	$connection = getDbConnection();
+	$result = mysqli_query($connection, "SELECT * FROM movie");
+	if (!$result)
+	{
+		throw new Exception(mysqli_error($connection));
+	}
+	$dbMovies = [];
+	while ($row = mysqli_fetch_assoc($result))
+	{
+		$dbMovies[] = [
+			'id' => $row['ID'],
+			'title' => $row['TITLE'],
+			'originalTitle' => $row['ORIGINAL_TITLE'],
+			'description' => $row['DESCRIPTION'],
+			'duration' => $row['DURATION'],
+			'ageRestriction' => $row['AGE_RESTRICTION'],
+			'releaseDate' => $row['RELEASE_DATE'],
+			'rating' => $row['RATING'],
+			'directorID' => $row['DIRECTOR_ID'],
+		];
+	}
+	return $dbMovies;
+}
+
+function displayMovieList()
+{
+	$movies = getMovies();
 	foreach ($movies as $movie)
 	{
-		return $movie;
+		generateMovieCard($movie);
 	}
-	/** @var array $movie */
-	return $movie;
 }
+
+
 
 $selectedGenre = $_GET['genre'] ?? '';
 if (!empty($_GET['genre']))
@@ -23,7 +51,7 @@ if (!empty($_GET['genre']))
 		'title' => getConfigValue('TITLE', 'Bitflix :: Genres'),
 		'page' => renderTemplate('/components/genres', [
 			'genre' => $selectedGenre,
-			'movie' => getMovie($movies),
+			'movies' => getMovies($dbMovies),
 		]),
 	]);
 }
