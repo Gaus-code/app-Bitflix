@@ -22,6 +22,5 @@ function generateMovieCard(array $dbMovies)
 	$card .= '<a class="card__link" href="detail.php?ID=' . $dbMovies['id'] . '">Подробнее' . '</a>';
 	$card .= '</div>';
 	$card .= '</div>';
-	print_r($card);
+	echo($card);
 }
-// implode(", ", $movie['genres']) . "..." .'</p>' ГДЕ ФУТЕР ЖЕНРЕ

@@ -57,7 +57,7 @@ if (!empty($_GET['genre']))
 		'title' => getConfigValue('TITLE', 'Bitflix :: Genres'),
 		'page' => renderTemplate('/components/genres', [
 			'genre' => $selectedGenre,
-			'movies' => getMovies($dbMovies),
+			'movies' => $dbMovies,
 		]),
 	]);
 }

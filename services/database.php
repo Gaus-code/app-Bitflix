@@ -34,20 +34,3 @@ function getDbConnection()
 
 	return $connection;
 }
-function getDbGenres()
-{
-	$connection = getDbConnection();
-	$result = mysqli_query($connection, "SELECT * FROM genre");
-	if (!$result)
-	{
-		throw new Exception(mysqli_error($connection));
-	}
-	$dbGenre = [];
-	while ($row = mysqli_fetch_assoc($result))
-	{
-		$dbGenre[] = [
-			'name' => $row['NAME'],
-		];
-	}
-	return $dbGenre;
-}

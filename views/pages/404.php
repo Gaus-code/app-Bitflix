@@ -1,9 +1,3 @@
-<?php
-/**
- * @var array $movies
- * @var array $genres
- */
-?>
 <main class="main">
 
 	<div class="container404">

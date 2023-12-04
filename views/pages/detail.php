@@ -1,10 +1,3 @@
-<?php
-/**
- * @var $movies
- * @var
- */
-
-?>
 
 <main class="info">
 	<div class="info__container">

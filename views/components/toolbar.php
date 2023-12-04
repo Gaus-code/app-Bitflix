@@ -1,6 +1,3 @@
-<?php
-?>
-
 
 <div class="toolbar">
 	<div class="toolbar__container">
