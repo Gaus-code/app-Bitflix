@@ -6,11 +6,19 @@ require_once __DIR__ . '/../views/components/detail-card.php';
  * @var array $movies ;
  * @var array $movie ;
  */
-function getMovieInfo() :array
+function getMovieInfo()
 {
 	$ID = $_GET['ID'] ?? '';
 	$connection = getDbConnection();
-	$result = mysqli_query($connection, "SELECT * FROM movie WHERE id = '$ID';");
+	$result = mysqli_query($connection, "
+		SELECT m.ID, m.TITLE, m.ORIGINAL_TITLE, m.RELEASE_DATE, m.DESCRIPTION, m.RATING, m.AGE_RESTRICTION, d.name AS DIRECTOR, GROUP_CONCAT(a.name) AS CAST
+		FROM movie m
+		JOIN movie_actor ma ON m.id = ma.movie_id
+		JOIN actor a ON ma.actor_id = a.id
+		JOIN director d ON m.director_id = d.id
+		WHERE m.ID = '$ID'
+		GROUP BY m.ID;
+	");
 	if (!$result)
 	{
 		throw new Exception(mysqli_error($connection));
@@ -27,7 +35,8 @@ function getMovieInfo() :array
 			'ageRestriction' => $row['AGE_RESTRICTION'],
 			'releaseDate' => $row['RELEASE_DATE'],
 			'rating' => $row['RATING'],
-			'directorID' => $row['DIRECTOR_ID'],
+			'director' => $row['DIRECTOR'],
+			'cast' => $row['CAST'],
 		];
 
 	}
@@ -45,7 +54,7 @@ function getMovieInfo() :array
 			return $movie['id'] === $ID;
 		});
 	}
-	return $dbMovies;
+
 }
 
 

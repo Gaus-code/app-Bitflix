@@ -30,11 +30,11 @@ function generateDetailCard(array $dbMovies)
 						$card .= '</li>';
 						$card .= '<li class="info__item">';
 							$card .= '<p class="info__key">Режиссер:</p>';
-							$card .= '<p class="info__value">'.'ТУТ ДОЛЖЕН БЫТЬ РЕЖЖИСЕР'.'</p>';
+							$card .= '<p class="info__value">'. $dbMovies['director'].'</p>';
 						$card .= '</li>';
 						$card .= '<li class="info__item">';
 							$card .= '<p class="info__key">В главных ролях:</p>';
-							$card .= '<p class="info__value">'.'ТУТ ДОЛЖЕН БЫТЬ КАСТ'.'</p>';
+							$card .= '<p class="info__value">'. $dbMovies['cast'] .'</p>';
 						$card .= '</li>';
 					$card .= '</ul>';
 				$card .= '</div>';
