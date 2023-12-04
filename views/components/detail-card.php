@@ -1,12 +1,13 @@
 <?php
+require_once __DIR__ . '/../components/rating-line.php';
 function generateDetailCard(array $dbMovies)
 {
 		$card = '<div class="info__header">';
 			$card .= '<div class="info__title">';
-				$card .= '<h1>' . $dbMovies['title'] . ' (' . $dbMovies['releaseDate'] . '</h1>';
+				$card .= '<h1>' . $dbMovies['title'] . ' (' . $dbMovies['releaseDate'] . ')' . '</h1>';
 				$card .= '<div class="info__engTitle">';
 					$card .= '<p>' . $dbMovies['originalTitle'] .'</p>';
-					$card .= '<div class="minAge">' . $dbMovies['ageRestriction'] .'</div>';
+					$card .= '<div class="minAge">' . $dbMovies['ageRestriction'] . '+' . '</div>';
 				$card .= '</div>';
 			$card .= '</div>';
 			$card .= '<div class="heartWrapper">';
@@ -40,5 +41,6 @@ function generateDetailCard(array $dbMovies)
 				$card .= '<div class="info__description">' . '<h2>Описание</h2>' . '<p>'.  $dbMovies['description'] .'</p>' . '</div>';
 			$card .= '</div>';
 		$card .= '</div>';
-		print_r($card);
+		echo($card);
+		return $card;
 }

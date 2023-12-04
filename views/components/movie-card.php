@@ -5,8 +5,8 @@ function generateMovieCard(array $dbMovies)
 	$card = '<div class="card">';
 	$card .= '<img class="card__image" src="./assets/images/' . $dbMovies['id'] . '.jpg' . '" alt="' . $dbMovies['title'] . '">';
 	$card .= '<div class="card__article">';
-	$card .= '<h2 class="card__title">' . $dbMovies['title'] . ' (' . $dbMovies['releaseDate'] . ')' .'</h2>';
-	$card .= '<h3 class="card__engTittle">' . $dbMovies['originalTitle'] .'</h3>';
+	$card .= '<h2 class="card__title">' . $dbMovies['title'] . ' (' . $dbMovies['release-date'] . ')' .'</h2>';
+	$card .= '<h3 class="card__engTittle">' . $dbMovies['original-title'] .'</h3>';
 	$card .= '<div class="card__line">' . '</div>';
 	$card .= '<p class="card__description">' . $dbMovies['description'] .'</p>';
 	$card .= '<div class="card__footer">';
@@ -14,7 +14,7 @@ function generateMovieCard(array $dbMovies)
 	$card .= '<img src="../../assets/images/clockIcon.svg" alt="clock icon" class="card__footer_duration_icon">';
 	$card .= '<p class="card__footer_duration_time">' . $dbMovies['duration'] . ' мин. / ' . convertMinutesToHours($dbMovies['duration']) .'</p>';
 	$card.=  '</div>';
-	$card .= '<p class="card__footer_genre">';
+	$card .= '<p class="card__footer_genre">' . $dbMovies['genres'] . '</p>';
 	$card .= '</div>';
 	$card .=  '</div>';
 	$card .= '<div class="overlay">' . '</div>';
@@ -23,6 +23,5 @@ function generateMovieCard(array $dbMovies)
 	$card .= '</div>';
 	$card .= '</div>';
 	print_r($card);
-
 }
 // implode(", ", $movie['genres']) . "..." .'</p>' ГДЕ ФУТЕР ЖЕНРЕ

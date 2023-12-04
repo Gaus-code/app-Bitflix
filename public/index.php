@@ -10,7 +10,13 @@ require_once __DIR__ . '/../boot.php';
 function getMovies() :array
 {
 	$connection = getDbConnection();
-	$result = mysqli_query($connection, "SELECT * FROM movie");
+	$result = mysqli_query($connection, "
+		SELECT movie.ID, movie.title, movie.ORIGINAL_TITLE, movie.DESCRIPTION, movie.DURATION, movie.RELEASE_DATE, GROUP_CONCAT(genre.name) AS genres
+		FROM movie
+		JOIN movie_genre ON movie.id = movie_genre.movie_id
+		JOIN genre ON movie_genre.genre_id = genre.id
+		GROUP BY movie.ID;
+	");
 	if (!$result)
 	{
 		throw new Exception(mysqli_error($connection));
@@ -20,14 +26,14 @@ function getMovies() :array
 	{
 		$dbMovies[] = [
 			'id' => $row['ID'],
-			'title' => $row['TITLE'],
-			'originalTitle' => $row['ORIGINAL_TITLE'],
+			'title' => $row['title'],
+			'original-title' => $row['ORIGINAL_TITLE'],
 			'description' => $row['DESCRIPTION'],
 			'duration' => $row['DURATION'],
 			'ageRestriction' => $row['AGE_RESTRICTION'],
-			'releaseDate' => $row['RELEASE_DATE'],
+			'release-date' => $row['RELEASE_DATE'],
 			'rating' => $row['RATING'],
-			'directorID' => $row['DIRECTOR_ID'],
+			'genres' => $row['genres'],
 		];
 	}
 	return $dbMovies;

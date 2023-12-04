@@ -1,7 +1,6 @@
 <?php
 require_once __DIR__ . '/../boot.php';
-require_once __DIR__ . '/../views/components/rating-line.php';
-
+require_once __DIR__ . '/../views/components/detail-card.php';
 /**
  * @var array $genres ;
  * @var array $movies ;
@@ -30,10 +29,26 @@ function getMovieInfo() :array
 			'rating' => $row['RATING'],
 			'directorID' => $row['DIRECTOR_ID'],
 		];
+
+	}
+	foreach ($dbMovies as $movie)
+	{
+		if ($movie['id'] === $ID)
+		{
+			generateDetailCard($movie);
+		}
+	}
+	foreach ($dbMovies as $movie)
+	{
+		array_filter($dbMovies, function ($ID) use ($movie)
+		{
+			return $movie['id'] === $ID;
+		});
 	}
 	return $dbMovies;
 }
-$movies = getMovieInfo();
+
+
 $ID = $_GET['ID'] ?? '';
 if(($_GET['ID'] ?? ''))
 {
@@ -54,13 +69,7 @@ if (!is_numeric($ID))
 	exit;
 }
 
-foreach ($movies as $movie)
-{
-	array_filter($movies, function ($ID) use ($movie)
-	{
-		return $movie['id'] === $ID;
-	});
-}
+
 
 echo renderTemplate('layout',[
 	'title' => getConfigValue('TITLE', 'Bitflix :: About'),
