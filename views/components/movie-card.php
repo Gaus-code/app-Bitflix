@@ -11,7 +11,7 @@
 			<h2 class="card__title"><?= $movie['title'] . ' (' . $movie['releaseDate'] . ')'?></h2>
 			<h3 class="card__engTittle"><?= $movie['originalTitle'] ?></h3>
 			<div class="card__line"></div>
-			<p class="card__description"><?= $movie['description'] ?></p>
+			<p class="card__description"><?= mb_strimwidth($movie['description'], 0, 180, "...") ?></p>
 			<div class="card__footer">
 				<div class="card__footer_duration">
 					<img src="../../assets/images/clockIcon.svg" alt="clock icon" class="card__footer_duration_icon">

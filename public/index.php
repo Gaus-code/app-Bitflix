@@ -1,6 +1,5 @@
 <?php
 require_once __DIR__ . '/../boot.php';
-require_once __DIR__ . '/../views/components/movie-card.php';
 
 $selectedGenre = $_GET['genre'] ?? '';
 if (!empty($_GET['genre']))

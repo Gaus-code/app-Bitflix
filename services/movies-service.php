@@ -73,7 +73,7 @@ function generateFilterMovieCard()
 			echo '<h2 class="card__title">' . $movie['title'] . ' (' . $movie['releaseDate'] . ')</h2>';
 			echo '<h3 class="card__engTittle">' . $movie['originalTitle'] . '</h3>';
 			echo '<div class="card__line"></div>';
-			echo '<p class="card__description">' . $movie['description'] . '</p>';
+			echo '<p class="card__description">' . mb_strimwidth($movie['description'], 0, 180, "..."). '</p>';
 			echo '<div class="card__footer">';
 			echo '<div class="card__footer_duration">';
 			echo '<img src="../../assets/images/clockIcon.svg" alt="clock icon" class="card__footer_duration_icon">';
@@ -87,4 +87,51 @@ function generateFilterMovieCard()
 			echo '</div>';
 		}
 	}
+}
+
+function getMovieById(): array
+{
+	$ID = $_GET['ID'] ?? '';
+	$connection = getDbConnection();
+
+	$result = mysqli_query($connection, "
+		SELECT m.ID, 
+		m.TITLE,
+		m.ORIGINAL_TITLE,
+		m.RELEASE_DATE,
+		m.DESCRIPTION,
+		m.RATING,
+		m.AGE_RESTRICTION,
+		d.name AS DIRECTOR,
+		GROUP_CONCAT(a.name) AS CAST
+		FROM movie m
+		JOIN movie_actor ma ON m.id = ma.movie_id
+		JOIN actor a ON ma.actor_id = a.id
+		JOIN director d ON m.director_id = d.id
+		WHERE m.ID = '$ID'
+		GROUP BY m.ID;
+	");
+
+	if (!$result)
+	{
+		throw new Exception(mysqli_error($connection));
+	}
+
+	$dbMovies = [];
+	while ($row = mysqli_fetch_assoc($result))
+	{
+		$dbMovies[] = [
+			'id' => $row['ID'],
+			'title' => $row['TITLE'],
+			'originalTitle' => $row['ORIGINAL_TITLE'],
+			'description' => $row['DESCRIPTION'],
+			'duration' => $row['DURATION'],
+			'ageRestriction' => $row['AGE_RESTRICTION'],
+			'releaseDate' => $row['RELEASE_DATE'],
+			'rating' => $row['RATING'],
+			'director' => $row['DIRECTOR'],
+			'cast' => $row['CAST'],
+		];
+	}
+	return $dbMovies;
 }
