@@ -1,18 +1,25 @@
 <?php
 require_once __DIR__ . '/../boot.php';
-require_once __DIR__ . '/../views/components/detail-card.php';
-require_once __DIR__ . '/../services/detail-service.php';
+require_once __DIR__ .'/../views/components/rating-line.php';
 /**
  * @throws Exception
  * @var array $dbMovies ;
  */
-function getMovieInfo()
+function getMovieInfo(): array
 {
 	$ID = $_GET['ID'] ?? '';
 	$connection = getDbConnection();
 
 	$result = mysqli_query($connection, "
-		SELECT m.ID, m.TITLE, m.ORIGINAL_TITLE, m.RELEASE_DATE, m.DESCRIPTION, m.RATING, m.AGE_RESTRICTION, d.name AS DIRECTOR, GROUP_CONCAT(a.name) AS CAST
+		SELECT m.ID, 
+		m.TITLE,
+		m.ORIGINAL_TITLE,
+		m.RELEASE_DATE,
+		m.DESCRIPTION,
+		m.RATING,
+		m.AGE_RESTRICTION,
+		d.name AS DIRECTOR,
+		GROUP_CONCAT(a.name) AS CAST
 		FROM movie m
 		JOIN movie_actor ma ON m.id = ma.movie_id
 		JOIN actor a ON ma.actor_id = a.id
@@ -42,19 +49,13 @@ function getMovieInfo()
 			'cast' => $row['CAST'],
 		];
 	}
-
-	foreach ($dbMovies as $movie)
-	{
-		if ($movie['id'] === $ID)
-		{
-			generateDetailCard($movie);
-		}
-	}
+	return $dbMovies;
 }
 
 echo renderTemplate('layout',[
-	'title' => getConfigValue('TITLE', 'Bitflix :: About'),
+	'title' => option('TITLE', 'Bitflix :: About'),
 	'page' => renderTemplate('pages/detail', [
-		'movies' => $dbMovies,
+		'dbMovies' => getMovieInfo(),
 	]),
 ]);
+

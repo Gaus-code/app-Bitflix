@@ -1,13 +1,8 @@
-<?php
-/**
- * @var array $movie
- */
-?>
 
 <main class="main">
 	<div class="main__container">
 		<div class="cards__container">
-			<?= filterMoviesByGenre($movie) ?>
+			<?php filterMoviesByGenre(); ?>
 		</div>
 	</div>
 </main>

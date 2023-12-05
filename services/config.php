@@ -1,9 +1,5 @@
 <?php
-/**
- * @var array $config
- */
-
-function getConfigValue(string $name, $defaultValue = null)
+function option(string $name, $defaultValue = null)
 {
 	/**@var  array $config*/
 	static $config = null;

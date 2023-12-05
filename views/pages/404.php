@@ -1,5 +1,14 @@
-<main class="main">
+<!doctype html>
+<html lang="<?= option('LANG', 'ru') ?>">
 
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="/assets/404.css">
+	<title><?= htmlspecialchars(option('APP_NAME', 'BITFLIX24')); ?></title>
+</head>
+<body>
+<main class="main">
 	<div class="container404">
 		<div class="inner-container404">
 			<div class="moon"></div>
@@ -50,4 +59,5 @@
 		</div>
 	</div>
 </main>
+</body>
 <script src="/assets/scripts/index404.js"></script>

@@ -1,26 +1,28 @@
 <?php
+/**
+ * @var array $movies
+ */
+?>
 
-function generateMovieCard(array $dbMovies)
-{
-	$card = '<div class="card">';
-	$card .= '<img class="card__image" src="./assets/images/' . $dbMovies['id'] . '.jpg' . '" alt="' . $dbMovies['title'] . '">';
-	$card .= '<div class="card__article">';
-	$card .= '<h2 class="card__title">' . $dbMovies['title'] . ' (' . $dbMovies['release-date'] . ')' .'</h2>';
-	$card .= '<h3 class="card__engTittle">' . $dbMovies['original-title'] .'</h3>';
-	$card .= '<div class="card__line">' . '</div>';
-	$card .= '<p class="card__description">' . $dbMovies['description'] .'</p>';
-	$card .= '<div class="card__footer">';
-	$card .= '<div class="card__footer_duration">';
-	$card .= '<img src="../../assets/images/clockIcon.svg" alt="clock icon" class="card__footer_duration_icon">';
-	$card .= '<p class="card__footer_duration_time">' . $dbMovies['duration'] . ' мин. / ' . convertMinutesToHours($dbMovies['duration']) .'</p>';
-	$card.=  '</div>';
-	$card .= '<p class="card__footer_genre">' . $dbMovies['genres'] . '</p>';
-	$card .= '</div>';
-	$card .=  '</div>';
-	$card .= '<div class="overlay">' . '</div>';
-	$card .= '<div class="card__button">';
-	$card .= '<a class="card__link" href="detail.php?ID=' . $dbMovies['id'] . '">Подробнее' . '</a>';
-	$card .= '</div>';
-	$card .= '</div>';
-	echo($card);
-}
+<?php foreach ((array)$movies as $movie): ?>
+	<div class="card">
+		<img src="<?= './assets/images/' . $movie['id'] . '.jpg' ?>" alt="<?= $movie['title']?>" class="card__image">
+		<div class="card__article">
+			<h2 class="card__title"><?= $movie['title'] . ' (' . $movie['releaseDate'] . ')'?></h2>
+			<h3 class="card__engTittle"><?= $movie['originalTitle'] ?></h3>
+			<div class="card__line"></div>
+			<p class="card__description"><?= $movie['description'] ?></p>
+			<div class="card__footer">
+				<div class="card__footer_duration">
+					<img src="../../assets/images/clockIcon.svg" alt="clock icon" class="card__footer_duration_icon">
+					<p class="card__footer_duration_time"><?= $movie['duration'] ?> мин. / <?= convertMinutesToHours($movie['duration'])?></p>
+				</div>
+				<p class="card__footer_genre">
+					<?= mb_strimwidth($movie['genres'], 0, 30, "...") ?>
+				</p>
+			</div>
+		</div>
+		<div class="overlay"></div>
+		<div class="card__button"><a class="card__link" href="<?= 'detail.php?ID='. $movie['id'] ?>">Подробнее</a></div>
+	</div>
+<?php endforeach; ?>

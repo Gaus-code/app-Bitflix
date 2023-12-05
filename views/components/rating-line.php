@@ -13,5 +13,4 @@ function displayRatingLine(array $dbMovies)
 		}
 	}
 	echo '</div>';
-
 }

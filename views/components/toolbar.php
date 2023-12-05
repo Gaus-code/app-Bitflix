@@ -4,7 +4,7 @@
 		<div class="toolbar__formContainer">
 			<form class="form">
 				<img src="/assets/images/searchIcon.svg" alt="search icon" class="form__icon">
-				<input type="text" class="form__input" placeholder="Поиск по калалогу...">
+				<input type="text" class="form__input" placeholder="Поиск по каталогу...">
 				<button class="form__btn" type="submit">Искать</button>
 			</form>
 		</div>

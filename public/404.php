@@ -1,12 +1,7 @@
 <?php
 require_once __DIR__ . '/../boot.php';
-/**
- * @var array $genres;
- * @var array $movies
- */
 
-
-echo renderTemplate('layout', [
+echo renderTemplate('/pages/404', [
 	'title' => 'NOT FOUND',
-	'page' => renderTemplate('/pages/404', []),
+	'page' => renderTemplate('pages/404', []),
 ]);
