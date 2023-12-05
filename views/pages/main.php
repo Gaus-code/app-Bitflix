@@ -1,6 +1,5 @@
 <?php
 $movies = getMovieList();
-
 ?>
 
 <main class="main">

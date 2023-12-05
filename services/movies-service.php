@@ -58,37 +58,6 @@ function getMovieList(): array
 	}
 	return $movies;
 }
-function generateFilterMovieCard()
-{
-	$selectedGenre = $_GET['genre'];
-	$movies = getMovieList();
-	foreach ($movies as $movie)
-	{
-		$movieGenres = explode(',', $movie['genres']);
-		if (in_array($selectedGenre, $movieGenres))
-		{
-			echo '<div class="card">';
-			echo '<img src="./assets/images/' . $movie['id'] . '.jpg " alt="' . $movie['title'] . '"class="card__image">';
-			echo '<div class="card__article">';
-			echo '<h2 class="card__title">' . $movie['title'] . ' (' . $movie['releaseDate'] . ')</h2>';
-			echo '<h3 class="card__engTittle">' . $movie['originalTitle'] . '</h3>';
-			echo '<div class="card__line"></div>';
-			echo '<p class="card__description">' . mb_strimwidth($movie['description'], 0, 180, "..."). '</p>';
-			echo '<div class="card__footer">';
-			echo '<div class="card__footer_duration">';
-			echo '<img src="../../assets/images/clockIcon.svg" alt="clock icon" class="card__footer_duration_icon">';
-			echo '<p class="card__footer_duration_time">'. $movie['duration'] . ' мин. / ' . convertMinutesToHours($movie['duration']) . '</p>';
-			echo '</div>';
-			echo '<p class="card__footer_genre">' . mb_strimwidth($movie['genres'], 0, 30, "...") . '</p>';
-			echo '</div>';
-			echo '</div>';
-			echo '<div class="overlay"></div>';
-			echo '<div class="card__button"><a class="card__link" href="detail.php?ID='. $movie['id'] . '">Подробнее</a></div>';
-			echo '</div>';
-		}
-	}
-}
-
 function getMovieById(): array
 {
 	$ID = $_GET['ID'] ?? '';
@@ -134,4 +103,20 @@ function getMovieById(): array
 		];
 	}
 	return $dbMovies;
+}
+function getMoviesByGenre($movies, $selectedGenre): array
+{
+	$selectedMovies = array();
+	foreach ($movies as $movie)
+	{
+		$movieGenres = explode(',', $movie['genres']);
+		foreach ($movieGenres as $neededGenre)
+		{
+			if ($neededGenre === $selectedGenre)
+			{
+				$selectedMovies[] = $movie;
+			}
+		}
+	}
+	return $selectedMovies;
 }
