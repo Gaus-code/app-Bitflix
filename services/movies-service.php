@@ -23,7 +23,7 @@ function generateGenresList(): array
 	}
 	return $genres;
 }
-function getMovieList()
+function getMovieList(): array
 {
 	$connection = getDbConnection();
 
@@ -58,7 +58,7 @@ function getMovieList()
 	}
 	return $movies;
 }
-function filterMoviesByGenre()
+function generateFilterMovieCard()
 {
 	$selectedGenre = $_GET['genre'];
 	$movies = getMovieList();
