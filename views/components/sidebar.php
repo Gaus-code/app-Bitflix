@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @var array $genres
  */
@@ -16,7 +15,11 @@
 				<li class="aside__item">
 					<a href="/" class="aside__link">Главная</a>
 				</li>
-				<?php generateGenresList();?>
+				<?php foreach ($genres as $genre): ?>
+				<li class="aside__item">
+					<a href="/index.php?genre=<?=$genre['name']?>" class="aside__link"> <?=$genre['name']?> </a>
+				</li>
+				<?php endforeach;?>
 				<li class="aside__item">
 					<a href="/favourite.php" class="aside__link">Избранное</a>
 				</li>

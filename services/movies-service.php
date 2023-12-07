@@ -16,11 +16,6 @@ function generateGenresList(): array
 			'code' => $row['CODE']
 		];
 	}
-	foreach ($genres as $genre) {
-		echo '<li class="aside__item">';
-		echo '<a href="/index.php?genre=' . $genre['name'] . '" class="aside__link">' . $genre['name'] . '</a>';
-		echo '</li>';
-	}
 	return $genres;
 }
 function getMovieList(): array
@@ -58,9 +53,8 @@ function getMovieList(): array
 	}
 	return $movies;
 }
-function getMovieById(): array
+function getMovieById($ID): array
 {
-	$ID = $_GET['ID'] ?? '';
 	$connection = getDbConnection();
 
 	$result = mysqli_query($connection, "

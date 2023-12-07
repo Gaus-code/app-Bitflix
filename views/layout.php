@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @var $page
  */
@@ -16,8 +15,10 @@
 </head>
 <body>
 	<div class="wrapper">
-		<?php include "components/toolbar.php"; ?>
-		<?php include "components/sidebar.php"; ?>
+		<?php echo renderTemplate('components/toolbar', []);?>
+		<?php echo renderTemplate('components/sidebar', [
+			'genres' => generateGenresList(),
+		]);?>
 		<?= $page ?>
 	</div>
 </body>
