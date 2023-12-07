@@ -2,7 +2,7 @@
 require_once __DIR__ . '/../boot.php';
 
 $selectedGenre = $_GET['genre'] ?? '';
-if (!empty($_GET['genre']))
+if (!empty($selectedGenre))
 {
 	echo renderTemplate('layout', [
 		'title' => option('TITLE', 'Bitflix :: Genres'),
