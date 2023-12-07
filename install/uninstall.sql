@@ -1,2 +1,3 @@
-SET FOREIGN_KEY_CHECKS=0;
-DROP TABLE IF EXISTS actor, director, genre, movie, movie_actor, movie_genre;
+DROP TABLE IF EXISTS movie_actor, movie_genre;
+DROP TABLE IF EXISTS actor, genre, movie;
+DROP TABLE IF EXISTS director;
