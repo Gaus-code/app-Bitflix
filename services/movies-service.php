@@ -1,5 +1,4 @@
 <?php
-
 function generateGenresList(): array
 {
 	$connection = getDbConnection();
@@ -35,7 +34,8 @@ function getMovieList(): array
 		JOIN genre ON movie_genre.genre_id = genre.id
 		GROUP BY movie.ID;
 	");
-	if (!$result) {
+	if (!$result)
+	{
 		throw new Exception(mysqli_error($connection));
 	}
 
@@ -57,7 +57,7 @@ function getMovieById($ID): array
 {
 	$connection = getDbConnection();
 
-	$result = mysqli_query($connection, "
+	$stmt = mysqli_prepare($connection, "
 		SELECT m.ID, 
 		m.TITLE,
 		m.ORIGINAL_TITLE,
@@ -71,10 +71,12 @@ function getMovieById($ID): array
 		JOIN movie_actor ma ON m.id = ma.movie_id
 		JOIN actor a ON ma.actor_id = a.id
 		JOIN director d ON m.director_id = d.id
-		WHERE m.ID = '$ID'
+		WHERE m.ID = ?
 		GROUP BY m.ID;
 	");
-
+	mysqli_stmt_bind_param($stmt, "i", $ID);
+	mysqli_stmt_execute($stmt);
+	$result = mysqli_stmt_get_result($stmt);
 	if (!$result)
 	{
 		throw new Exception(mysqli_error($connection));
@@ -98,19 +100,44 @@ function getMovieById($ID): array
 	}
 	return $dbMovies;
 }
-function getMoviesByGenre($movies, $selectedGenre): array
+function getMoviesByGenre($selectedGenre): array
 {
-	$selectedMovies = array();
-	foreach ($movies as $movie)
+	$connection = getDbConnection();
+
+	$stmt = mysqli_prepare($connection,"
+	SELECT movie.ID,
+	       movie.TITLE,
+	       movie.ORIGINAL_TITLE,
+	       movie.DESCRIPTION,
+	       movie.DURATION,
+	       movie.RELEASE_DATE,
+	       GROUP_CONCAT(genre.name) AS GENRES
+	FROM movie
+	    JOIN movie_genre mg ON movie.id = mg.movie_id
+	    JOIN genre ON mg.genre_id = genre.id
+	WHERE genre.name = ?
+	GROUP BY movie.ID");
+	mysqli_stmt_bind_param($stmt, "s", $selectedGenre);
+	mysqli_stmt_execute($stmt);
+	$result = mysqli_stmt_get_result($stmt);
+	if (!$result)
 	{
-		$movieGenres = explode(',', $movie['genres']);
-		foreach ($movieGenres as $neededGenre)
-		{
-			if ($neededGenre === $selectedGenre)
-			{
-				$selectedMovies[] = $movie;
-			}
-		}
+		throw new Exception(mysqli_error($connection));
 	}
-	return $selectedMovies;
+
+	$movies = [];
+	while ($row = mysqli_fetch_assoc($result))
+	{
+		$movies[] = [
+			'id' => $row['ID'],
+			'title' => $row['TITLE'],
+			'originalTitle' => $row['ORIGINAL_TITLE'],
+			'description' => $row['DESCRIPTION'],
+			'duration' => $row['DURATION'],
+			'releaseDate' => $row['RELEASE_DATE'],
+			'genres' => $row['GENRES']
+		];
+	}
+
+	return $movies;
 }

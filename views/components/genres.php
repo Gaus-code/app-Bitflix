@@ -5,7 +5,7 @@ $selectedGenre = $_GET['genre'];
 	<div class="main__container">
 		<div class="cards__container">
 			<?php echo renderTemplate('components/movie-card', [
-				'movies' => getMoviesByGenre(getMovieList(), $selectedGenre),
+				'movies' => getMoviesByGenre($selectedGenre),
 			]); ?>
 		</div>
 	</div>
