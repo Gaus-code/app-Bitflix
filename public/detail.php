@@ -4,7 +4,7 @@ require_once __DIR__ . '/../boot.php';
  * @throws Exception
  */
 $ID = $_GET['ID'] ?? '';
-
+$connection = getDbConnection();
 function checkId($ID): int
 {
 	if(($ID ?? ''))
@@ -22,7 +22,7 @@ function checkId($ID): int
 echo renderTemplate('layout',[
 	'title' => option('TITLE', 'Bitflix :: About'),
 	'page' => renderTemplate('pages/detail', [
-		'dbMovies' => getMovieById(checkId($ID)),
+		'dbMovies' => getMovieById($connection, checkId($ID)),
 	]),
 ]);
 

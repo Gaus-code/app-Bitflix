@@ -1,8 +1,6 @@
 <?php
-function generateGenresList(): array
+function generateGenresList($connection): array
 {
-	$connection = getDbConnection();
-
 	$result = mysqli_query($connection, "SELECT NAME, CODE FROM genre;");
 
 	if (!$result) {
@@ -17,10 +15,8 @@ function generateGenresList(): array
 	}
 	return $genres;
 }
-function getMovieList(): array
+function getMovieList($connection): array
 {
-	$connection = getDbConnection();
-
 	$result = mysqli_query($connection, "
 		SELECT movie.ID, 
 		movie.title,
@@ -53,10 +49,8 @@ function getMovieList(): array
 	}
 	return $movies;
 }
-function getMovieById($ID): array
+function getMovieById($connection, $ID): array
 {
-	$connection = getDbConnection();
-
 	$stmt = mysqli_prepare($connection, "
 		SELECT m.ID, 
 		m.TITLE,
@@ -100,10 +94,8 @@ function getMovieById($ID): array
 	}
 	return $dbMovies;
 }
-function getMoviesByGenre($selectedGenre): array
+function getMoviesByGenre($connection, $selectedGenre): array
 {
-	$connection = getDbConnection();
-
 	$stmt = mysqli_prepare($connection,"
 	SELECT movie.ID,
 	       movie.TITLE,

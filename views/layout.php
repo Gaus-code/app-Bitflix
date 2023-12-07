@@ -2,6 +2,7 @@
 /**
  * @var $page
  */
+$connection = getDbConnection();
 ?>
 
 <!doctype html>
@@ -17,7 +18,7 @@
 	<div class="wrapper">
 		<?php echo renderTemplate('components/toolbar', []);?>
 		<?php echo renderTemplate('components/sidebar', [
-			'genres' => generateGenresList(),
+			'genres' => generateGenresList($connection),
 		]);?>
 		<?= $page ?>
 	</div>
